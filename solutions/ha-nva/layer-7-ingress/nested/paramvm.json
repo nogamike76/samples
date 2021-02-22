@@ -180,7 +180,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-12-01",
-            "name": "[concat(parameters('vm_name'), '_nic-lb')]",
+            "name": "[concat(parameters('vm_name'), '_nic')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[parameters('vm_name')]"
