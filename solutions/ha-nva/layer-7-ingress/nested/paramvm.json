@@ -180,9 +180,9 @@
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
-            "name": "updateVNet",
+            "name": "[concat(parameters('vm_name'), '/update_loadbalancer')]",
             "dependsOn": [
-                "[parameters('vm_name')]"
+                "[concat(parameters('vm_name'), '/post_install_actions')]"
             ],
             "properties": {
                 "mode": "Incremental",
