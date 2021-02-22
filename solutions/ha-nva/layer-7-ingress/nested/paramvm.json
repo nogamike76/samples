@@ -182,7 +182,7 @@
             "apiVersion": "2019-12-01",
             "name": "[concat(parameters('vm_name'), '_nic-lb')]",
             "location": "[parameters('location')]",
-            "dependsOn":[
+            "dependsOn": [
                 "[parameters('vm_name')]"
             ],
             "properties": {
@@ -190,8 +190,15 @@
                     {
                         "name": "ipconfig1",
                         "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'),  parameters('vnet_subnet_name'))]"
+                            },
                             "applicationGatewayBackendAddressPools": "[if(contains(parameters('loadbalancerbackend_id_or_empty'),'Microsoft.Network/applicationGateways'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
-                            "loadBalancerBackendAddressPools": "[if(contains(parameters('loadbalancerbackend_id_or_empty'),'Microsoft.Network/loadBalancers'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]"
+                            "loadBalancerBackendAddressPools": "[if(contains(parameters('loadbalancerbackend_id_or_empty'),'Microsoft.Network/loadBalancers'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "publicIPAddress": "[if(empty(parameters('publicip_id_or_empty')),json('null'),variables('public_ip_if_not_empty'))]"
                         }
                     }
                 ]
