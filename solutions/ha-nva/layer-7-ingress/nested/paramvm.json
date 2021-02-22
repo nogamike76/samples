@@ -68,13 +68,6 @@
                 "description": "Resource ID for Load Balancer backend or an empty string if not used"
             }
         },
-        "loadbalancer_type": {
-            "type": "string",
-            //"allowedValues": [ "ApplicationGateway", "LoadBalancer", "None" ],
-            "metadata": {
-                "description": "ApplicationGateway, LoadBalancer, or None to identify what type of backend pool the VM belongs to."
-            }
-        },
         "availabilityzone": {
             "type": "int",
             "metadata": {
@@ -175,8 +168,8 @@
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'),  parameters('vnet_subnet_name'))]"
                             },
-                            "applicationGatewayBackendAddressPools": "[if(equals(parameters('loadbalancer_type'),'ApplicationGateway'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
-                            "loadBalancerBackendAddressPools": "[if(equals(parameters('loadbalancer_type'),'LoadBalancer'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
+                            "applicationGatewayBackendAddressPools": "[if(contains(parameters('loadbalancerbackend_id_or_empty'),'Microsoft.Network/applicationGateways/backendAddressPools'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
+                            "loadBalancerBackendAddressPools": "[if(contains(parameters('loadbalancerbackend_id_or_empty'),'Microsoft.Network/loadBalancers/backendAddressPools'),variables('loadbalancerbackend_if_not_empty'),json('[]'))]",
                             "primary": true,
                             "privateIPAddressVersion": "IPv4",
                             "publicIPAddress": "[if(empty(parameters('publicip_id_or_empty')),json('null'),variables('public_ip_if_not_empty'))]"
