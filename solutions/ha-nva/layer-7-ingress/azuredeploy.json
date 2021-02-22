@@ -22,10 +22,10 @@
         },
         "OperatingSystemImage": {
             "type": "string",
-            "defaultValue": "Red Hat Enterprise Linux 7 (latest, LVM)",
+            "defaultValue": "CentOS 7 (latest, LVM)",
             "allowedValues": [
-                "Red Hat Enterprise Linux 7 (latest, LVM)",
-                "SUSE Enterprise Linux 12 SP5 +Patching"
+                "CentOS 7 (latest, LMV)",
+                "Red Hat Enterprise Linux 7 (latest, LVM)"
             ],
             "metadata": {
                 "description": "OS Image to use for All VMs."
@@ -177,7 +177,7 @@
         }
     },
     "variables": {
-        "ostag": "[if(equals(parameters('OperatingSystemImage'),'Red Hat Enterprise Linux 7 (latest, LVM)'),'RH7x','SL12')]",
+        "ostag": "[if(equals(parameters('OperatingSystemImage'),'Red Hat Enterprise Linux 7 (latest, LVM)'),'RH7x','Cent7x')]",
         "osProfile": {
             "RH7x": {
                 "image": {
@@ -187,11 +187,11 @@
                     "version": "latest"
                 }
             },
-            "SL12": {
+            "Cent7x": {
                 "image": {
-                    "publisher": "suse",
-                    "offer": "sles-12-sp5-basic",
-                    "sku": "gen1",
+                    "offer": "CentOS-LVM",
+                    "publisher": "OpenLogic",
+                    "sku": "7-LVM",
                     "version": "latest"
                 }
             }
