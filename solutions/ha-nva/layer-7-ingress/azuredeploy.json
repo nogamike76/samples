@@ -217,14 +217,124 @@
             "apiVersion": "2019-12-01",
             "name": "[parameters('WebNetworkSecurityGroupName')]",
             "location": "[parameters('location')]",
-            "properties": {}
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "AllowHTTPfromNVAtoLoadBalancer",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "10.0.0.64/27",
+                            "destinationAddressPrefix": "10.0.1.4",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "AllowHTTPfromLoadBalancertoWeb",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "10.0.252.224/27",
+                            "destinationAddressPrefix": "10.0.1.0/24",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "AllowSSHfromBastiontoWeb",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "10.0.253.224/27",
+                            "destinationAddressPrefix": "10.0.1.0/24",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound"
+                        }
+                    },
+                                        {
+                        "name": "DenyAll",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 4000,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            }
         },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-12-01",
             "name": "[parameters('NvaNetworkSecurityGroupName')]",
             "location": "[parameters('location')]",
-            "properties": {}
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "AllowHTTPfromAppGatewaytoNVA",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "10.0.252.224/27",
+                            "destinationAddressPrefix": "10.0.0.64/27",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "AllowSSHfromBastiontoNVA",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "10.0.253.224/27",
+                            "destinationAddressPrefix": "10.0.0.64/27",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "DenyAll",
+                        "id": "/subscriptions/5ed3b632-2a1b-416a-b719-16b1a7dd8b94/resourceGroups/test3/providers/Microsoft.Network/networkSecurityGroups/NvaNSG/securityRules/DenyAll",
+                        "etag": "W/\"3b9b2885-5ed3-4349-a1b4-7c4ac5a1a94e\"",
+                        "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 4000,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            }
         },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
