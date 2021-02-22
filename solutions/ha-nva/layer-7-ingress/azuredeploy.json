@@ -24,7 +24,7 @@
             "type": "string",
             "defaultValue": "CentOS 7 (latest, LVM)",
             "allowedValues": [
-                "CentOS 7 (latest, LMV)",
+                "CentOS 7 (latest, LVM)",
                 "Red Hat Enterprise Linux 7 (latest, LVM)"
             ],
             "metadata": {

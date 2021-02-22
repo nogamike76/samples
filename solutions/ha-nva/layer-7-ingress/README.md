@@ -6,8 +6,6 @@ For more information on this deployment and other highly available NVA options, 
 
 TODO: Build Validation Icons
 
-
-
 ![Highly Available Ingress with layer 7 NVAs architectural diagram.](https://review.docs.microsoft.com/azure/architecture/reference-architectures/dmz/images/nva-ha/l7-ingress.png?branch=WIP-360720-hanva-refresh) TODO: Remove review branch from arch image.
 
 ## Deploy this template to Azure

@@ -70,7 +70,7 @@
         },
         "loadbalancer_type": {
             "type": "string",
-            "allowedValues": [ "ApplicationGateway", "LoadBalancer", "None" ],
+            //"allowedValues": [ "ApplicationGateway", "LoadBalancer", "None" ],
             "metadata": {
                 "description": "ApplicationGateway, LoadBalancer, or None to identify what type of backend pool the VM belongs to."
             }
