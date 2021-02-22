@@ -447,7 +447,6 @@
                     "loadbalancerbackend_id_or_empty": {
                         "value": "[if(equals(parameters('DeployAppGatewayDmz'),'Yes'),resourceId('Microsoft.Network/applicationGateways/backendAddressPools', 'frontend-appgateway', 'default-backend'),'')]"
                     },
-                    "loadbalancer_type": "ApplicationGateway",
                     "availabilityzone": {
                         "value": "[add(1,mod(copyIndex(),parameters('AvailabilityZoneCount')))]"
                     }
@@ -505,7 +504,6 @@
                     "loadbalancerbackend_id_or_empty": {
                         "value": "[if(equals(parameters('DeployLoadBalancerWeb'),'Yes'),resourceId('Microsoft.Network/loadBalancers/backendAddressPools', 'web-loadbalancer', 'default-backend'),'')]"
                     },
-                    "loadbalancer_type": "LoadBalancer",
                     "availabilityzone": {
                         "value": "[add(1,mod(copyIndex(),parameters('AvailabilityZoneCount')))]"
                     }
