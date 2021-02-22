@@ -240,10 +240,10 @@
                             "protocol": "TCP",
                             "sourcePortRange": "*",
                             "destinationPortRange": "80",
-                            "sourceAddressPrefix": "10.0.252.224/27",
+                            "sourceAddressPrefix": "10.0.1.4",
                             "destinationAddressPrefix": "10.0.1.0/24",
                             "access": "Allow",
-                            "priority": 100,
+                            "priority": 105,
                             "direction": "Inbound"
                         }
                     },
