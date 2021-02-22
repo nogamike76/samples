@@ -180,7 +180,7 @@
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
-            "name": "[concat(parameters('vm_name'), '/update_loadbalancer')]",
+            "name": "[concat(parameters('vm_name'), '_update_loadbalancer')]",
             "dependsOn": [
                 "[concat(parameters('vm_name'), '/post_install_actions')]"
             ],
