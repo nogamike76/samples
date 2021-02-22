@@ -182,7 +182,7 @@
             "type": "Microsoft.Resources/deployments",
             "name": "[concat(parameters('vm_name'), '_update_loadbalancer')]",
             "dependsOn": [
-                "[concat(parameters('vm_name'), '/post_install_actions')]"
+                "[parameters('vm_name')]"
             ],
             "properties": {
                 "mode": "Incremental",
